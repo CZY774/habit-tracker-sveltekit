@@ -70,7 +70,8 @@
                         {formatDate(selectedDate)}
                     </p>
                     <p class="text-sm text-gray-600 dark:text-gray-400">
-                        {new Date(selectedDate).toLocaleDateString('id-ID', { weekday: 'long' })}
+                        <!-- Shows the day of the week in english -->
+                        {new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'long' })}
                     </p>
                 </div>
             </div>
