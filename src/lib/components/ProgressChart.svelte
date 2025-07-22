@@ -84,7 +84,7 @@
 						grid: { color: 'rgba(0, 0, 0, 0.1)' },
 						ticks: {
 							color: '#6b7280',
-							callback: function (value: number) {
+							callback: function (value: string | number) {
 								return value + '%';
 							}
 						}
@@ -300,8 +300,8 @@
 				{#each $habits as habit}
 					{@const completions = Object.keys(habit.completions).length}
 					{@const daysSince =
-						Math.ceil((new Date() - new Date(habit.createdAt)) / (1000 * 60 * 60 * 24)) + 1}
-					{@const rate = Math.round((completions / Math.max(daysSince, 1)) * 100)}
+						Math.ceil((new Date().getTime() - new Date(habit.createdAt).getTime()) / (1000 * 60 * 60 * 24)) + 1}
+					{@const rate = Math.min(Math.round((completions / Math.max(daysSince, 1)) * 100), 100)}
 
 					<div
 						class="flex items-center justify-between rounded-lg bg-gray-50 p-3 transition-all duration-200 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"

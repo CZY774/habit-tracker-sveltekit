@@ -14,8 +14,8 @@
 	onMount(() => {
 		habits.init();
 
-		if ('Notification' in window && Notification.permission === 'default') {
-			Notification.requestPermission();
+		if ('Notification' in window && window.Notification.permission === 'default') {
+			window.Notification.requestPermission();
 		}
 	});
 
