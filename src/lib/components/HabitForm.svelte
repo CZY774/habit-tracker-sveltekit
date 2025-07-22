@@ -95,7 +95,9 @@
 		<button
 			type="submit"
 			disabled={!habitName.trim() || isAdding}
-			class="w-full transform rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:from-blue-600 hover:to-purple-700 disabled:cursor-not-allowed disabled:from-gray-300 disabled:to-gray-400 disabled:text-gray-600 dark:from-blue-600 dark:to-purple-700 dark:text-white dark:shadow-md dark:hover:from-blue-700 dark:hover:to-purple-800 disabled:dark:from-gray-600 disabled:dark:to-gray-700 disabled:dark:text-gray-300 {isAdding ? 'scale-95' : ''}"
+			class="w-full transform rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:from-blue-600 hover:to-purple-700 disabled:cursor-not-allowed disabled:from-gray-300 disabled:to-gray-400 disabled:text-gray-600 dark:from-blue-600 dark:to-purple-700 dark:text-white dark:shadow-md dark:hover:from-blue-700 dark:hover:to-purple-800 disabled:dark:from-gray-600 disabled:dark:to-gray-700 disabled:dark:text-gray-300 {isAdding
+				? 'scale-95'
+				: ''}"
 		>
 			{#if isAdding}
 				<div class="flex items-center justify-center gap-2">

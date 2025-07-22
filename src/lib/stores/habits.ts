@@ -27,7 +27,7 @@ function getTodayString(): string {
 function getStoredHabits(): Habit[] {
 	if (!browser) return [];
 	const stored = localStorage.getItem('habits');
-	return stored ? JSON.parse(stored) as Habit[] : [];
+	return stored ? (JSON.parse(stored) as Habit[]) : [];
 }
 
 // Fungsi untuk menyimpan ke localStorage
@@ -60,7 +60,7 @@ function createHabitsStore() {
 				completions: {}
 			};
 
-			update(habits => {
+			update((habits) => {
 				const updated = [...habits, newHabit];
 				saveHabits(updated);
 				return updated;
@@ -69,8 +69,8 @@ function createHabitsStore() {
 
 		// Hapus habit
 		removeHabit: (id: string) => {
-			update(habits => {
-				const updated = habits.filter(h => h.id !== id);
+			update((habits) => {
+				const updated = habits.filter((h) => h.id !== id);
 				saveHabits(updated);
 				return updated;
 			});
@@ -78,8 +78,8 @@ function createHabitsStore() {
 
 		// Toggle completion untuk hari tertentu
 		toggleCompletion: (id: string, date: string = getTodayString()) => {
-			update(habits => {
-				const updated = habits.map(habit => {
+			update((habits) => {
+				const updated = habits.map((habit) => {
 					if (habit.id === id) {
 						const completions = { ...habit.completions };
 						if (completions[date]) {
@@ -112,11 +112,17 @@ export const habits = createHabitsStore();
 export const notifications: Writable<Notification[]> = writable([]);
 
 // Fungsi helper untuk menambah notifikasi
-export function addNotification(message: string, type: 'success' | 'error' | 'info' | 'warning' = 'success') {
-	notifications.update(n => [...n, {
-		id: Date.now(),
-		message,
-		type,
-		timestamp: Date.now()
-	}]);
+export function addNotification(
+	message: string,
+	type: 'success' | 'error' | 'info' | 'warning' = 'success'
+) {
+	notifications.update((n) => [
+		...n,
+		{
+			id: Date.now(),
+			message,
+			type,
+			timestamp: Date.now()
+		}
+	]);
 }

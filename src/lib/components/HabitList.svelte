@@ -14,27 +14,27 @@
 
 	const categoryConfig: Record<string, { label: string; color: string }> = {
 		health: {
-			label: '🏃 Kesehatan',
+			label: '🏃 Health',
 			color: 'from-green-400 to-green-600 dark:from-green-600 dark:to-green-800'
 		},
 		learning: {
-			label: '📚 Belajar',
+			label: '📚 Learning',
 			color: 'from-blue-400 to-blue-600 dark:from-blue-600 dark:to-blue-800'
 		},
 		work: {
-			label: '💼 Kerja',
+			label: '💼 Work',
 			color: 'from-purple-400 to-purple-600 dark:from-purple-600 dark:to-purple-800'
 		},
 		hobby: {
-			label: '🎨 Hobi',
+			label: '🎨 Hobby',
 			color: 'from-orange-400 to-orange-600 dark:from-orange-600 dark:to-orange-800'
 		},
 		social: {
-			label: '👥 Sosial',
+			label: '👥 Social',
 			color: 'from-pink-400 to-pink-600 dark:from-pink-600 dark:to-pink-800'
 		},
 		general: {
-			label: '⭐ Umum',
+			label: '⭐ General',
 			color: 'from-gray-400 to-gray-600 dark:from-gray-600 dark:to-gray-800'
 		}
 	};
@@ -51,7 +51,7 @@
 			newSet.add(habitId);
 			celebratingHabits = newSet;
 
-			addNotification(`✅ "${habitName}" selesai!`, 'success');
+			addNotification(`✅ "${habitName}" is completed!`, 'success');
 
 			if (Notification.permission === 'granted') {
 				new Notification('Habit Completed! 🎉', {
@@ -77,7 +77,7 @@
 			celebratingHabits = newSet;
 
 			habits.removeHabit(id);
-			addNotification(`🗑️ Habit "${name}" dihapus`, 'warning');
+			addNotification(`🗑️ Habit "${name}" is removed`, 'warning');
 		}
 	}
 
@@ -138,12 +138,8 @@
 		{#if sortedHabits.length === 0}
 			<div class="py-12 text-center">
 				<div class="mb-4 text-6xl">🎯</div>
-				<h3 class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-200">
-					Belum Ada Kebiasaan
-				</h3>
-				<p class="text-gray-500 dark:text-gray-400">
-					Tambahkan kebiasaan pertama Anda untuk memulai!
-				</p>
+				<h3 class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-200">No Habits Yet</h3>
+				<p class="text-gray-500 dark:text-gray-400">Add your first habit to get started!</p>
 			</div>
 		{:else}
 			<div class="grid gap-4">
@@ -192,11 +188,11 @@
 											{#if streak > 0}
 												<span class="flex items-center gap-1 text-orange-500 dark:text-orange-400">
 													<Flame size={14} />
-													{streak} hari
+													{streak} days
 												</span>
 											{/if}
 											<span class="text-blue-500 dark:text-blue-400">
-												{completionRate}% selesai
+												{completionRate}% completed
 											</span>
 										</div>
 									</div>
@@ -468,7 +464,9 @@
 		70% {
 			transform: scale(2.5) rotate(240deg);
 			opacity: 0.9;
-			box-shadow: 0 0 15px #fff, 0 0 25px #60a5fa;
+			box-shadow:
+				0 0 15px #fff,
+				0 0 25px #60a5fa;
 		}
 		90% {
 			transform: scale(1) rotate(330deg);
@@ -484,9 +482,17 @@
 
 	/* Container bounce effect */
 	@keyframes celebration-bounce {
-		0% { transform: scale(1); }
-		30% { transform: scale(1.05); }
-		60% { transform: scale(0.98); }
-		100% { transform: scale(1); }
+		0% {
+			transform: scale(1);
+		}
+		30% {
+			transform: scale(1.05);
+		}
+		60% {
+			transform: scale(0.98);
+		}
+		100% {
+			transform: scale(1);
+		}
 	}
 </style>
