@@ -51,12 +51,12 @@ function createHabitsStore() {
 		},
 
 		// Tambah habit baru
-		addHabit: (name: string, category: string = 'general') => {
+		addHabit: (name: string, category: string = 'general', createdAt?: string) => {
 			const newHabit: Habit = {
 				id: Date.now().toString(),
 				name: name.trim(),
 				category,
-				createdAt: new Date().toISOString(),
+				createdAt: createdAt ?? new Date().toISOString(),
 				completions: {}
 			};
 

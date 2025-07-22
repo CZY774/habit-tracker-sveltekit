@@ -8,7 +8,7 @@
 	import Notification from '$lib/components/Notification.svelte';
 	import { Target, Sparkles, Instagram, Github, Globe } from 'lucide-svelte';
 
-	let selectedDate: string = new Date().toISOString().split('T')[0];
+	let selectedDate: string = new Date().toLocaleDateString('sv-SE');
 	let activeTab: 'habits' | 'progress' = 'habits';
 
 	onMount(() => {
@@ -30,8 +30,15 @@
 	}
 
 	$: formattedDayLabel = (() => {
-		const todayStr = new Date().toISOString().split('T')[0];
-		const yesterdayStr = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+		const todayStr = new Date().toLocaleDateString('sv-SE');
+
+		// debug today's date raw format
+		const todayRaw = new Date().toISOString();
+		console.log("Today's date (raw):", todayRaw);
+
+		const yesterday = new Date();
+		yesterday.setDate(yesterday.getDate() - 1);
+		const yesterdayStr = yesterday.toLocaleDateString('sv-SE');
 
 		const selected = new Date(selectedDate);
 		const weekday = selected.toLocaleDateString('en-US', { weekday: 'long' });
@@ -98,6 +105,8 @@
 						? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400'
 						: 'text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200'}"
 					on:click={() => (activeTab = 'habits')}
+					aria-pressed={activeTab === 'habits'}
+					aria-label="Switch to Habits Tab"
 				>
 					<Target size={16} />
 					Habits
@@ -108,6 +117,8 @@
 						? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400'
 						: 'text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200'}"
 					on:click={() => (activeTab = 'progress')}
+					aria-pressed={activeTab === 'progress'}
+					aria-label="Switch to Progress Tab"
 				>
 					<Sparkles size={16} />
 					Progress
@@ -122,7 +133,7 @@
 			<!-- Habits Tab -->
 			<div class="space-y-6">
 				<!-- Add Habit Form -->
-				<HabitForm />
+				<HabitForm {selectedDate} />
 
 				<!-- Habit List -->
 				<HabitList bind:selectedDate />
@@ -153,6 +164,7 @@
 						href="https://instagram.com/corneliusyoga"
 						target="_blank"
 						rel="noopener noreferrer"
+						aria-label="Visit Cornelius Yoga's Instagram profile"
 						class="mr-4 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200"
 					>
 						<Instagram size={24} />
@@ -161,6 +173,7 @@
 						href="https://github.com/corneliusyoga"
 						target="_blank"
 						rel="noopener noreferrer"
+						aria-label="Visit Cornelius Yoga's GitHub profile"
 						class="mr-4 text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200"
 					>
 						<Github size={24} />
@@ -169,6 +182,7 @@
 						href="https://corneliusyoga.vercel.app/"
 						target="_blank"
 						rel="noopener noreferrer"
+						aria-label="Visit Cornelius Yoga's Portfolio"
 						class="text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200"
 					>
 						<Globe size={24} />

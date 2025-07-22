@@ -104,12 +104,24 @@
 	}
 
 	function getCompletionRate(habit: Habit): number {
-		const total = Object.keys(habit.completions).length;
+		const createdDate = new Date(habit.createdAt);
+		const today = new Date();
 		const daysSinceCreated =
-			Math.ceil(
-				(new Date().getTime() - new Date(habit.createdAt).getTime()) / (1000 * 60 * 60 * 24)
-			) + 1;
-		return Math.round((total / Math.max(daysSinceCreated, 1)) * 100);
+			Math.ceil((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+
+		// Hitung berapa hari yang sudah completion dari hari yang sudah berlalu
+		let validCompletions = 0;
+		for (let i = 0; i < daysSinceCreated; i++) {
+			const checkDate = new Date(createdDate);
+			checkDate.setDate(createdDate.getDate() + i);
+			const dateStr = checkDate.toISOString().split('T')[0];
+
+			if (habit.completions[dateStr] && checkDate <= today) {
+				validCompletions++;
+			}
+		}
+
+		return Math.round((validCompletions / daysSinceCreated) * 100);
 	}
 </script>
 

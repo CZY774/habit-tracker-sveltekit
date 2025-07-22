@@ -300,8 +300,28 @@
 				{#each $habits as habit}
 					{@const completions = Object.keys(habit.completions).length}
 					{@const daysSince =
-						Math.ceil((new Date().getTime() - new Date(habit.createdAt).getTime()) / (1000 * 60 * 60 * 24)) + 1}
-					{@const rate = Math.min(Math.round((completions / Math.max(daysSince, 1)) * 100), 100)}
+						Math.ceil(
+							(new Date().getTime() - new Date(habit.createdAt).getTime()) / (1000 * 60 * 60 * 24)
+						) + 1}
+					{@const rate = (() => {
+						const createdDate = new Date(habit.createdAt);
+						const today = new Date();
+						const totalDays =
+							Math.ceil((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+
+						let validCompletions = 0;
+						for (let i = 0; i < totalDays; i++) {
+							const checkDate = new Date(createdDate);
+							checkDate.setDate(createdDate.getDate() + i);
+							const dateStr = checkDate.toISOString().split('T')[0];
+
+							if (habit.completions[dateStr] && checkDate <= today) {
+								validCompletions++;
+							}
+						}
+
+						return Math.round((validCompletions / totalDays) * 100);
+					})()}
 
 					<div
 						class="flex items-center justify-between rounded-lg bg-gray-50 p-3 transition-all duration-200 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -317,7 +337,14 @@
 						</div>
 						<div class="ml-4 text-right">
 							<p class="text-lg font-bold text-gray-800 dark:text-gray-200">{rate}%</p>
-							<p class="text-xs text-gray-500 dark:text-gray-400">{completions}/{daysSince} days</p>
+							<p class="text-xs text-gray-500 dark:text-gray-400">
+								{Object.keys(habit.completions).filter((date) => {
+									const checkDate = new Date(date);
+									const createdDate = new Date(habit.createdAt);
+									const today = new Date();
+									return checkDate >= createdDate && checkDate <= today;
+								}).length} completed in <br>{daysSince} days
+							</p>
 						</div>
 					</div>
 				{/each}

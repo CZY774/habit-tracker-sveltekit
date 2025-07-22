@@ -6,6 +6,8 @@
 	let category: string = 'health';
 	let isAdding: boolean = false;
 
+	export let selectedDate: string = new Date().toISOString().split('T')[0];
+
 	const categories: { value: string; label: string; color: string }[] = [
 		{ value: 'health', label: '🏃 Health', color: 'bg-green-500' },
 		{ value: 'learning', label: '📚 Learning', color: 'bg-blue-500' },
@@ -21,7 +23,7 @@
 		isAdding = true;
 
 		setTimeout(() => {
-			habits.addHabit(habitName, category);
+			habits.addHabit(habitName, category, selectedDate);
 			addNotification(`🎉 Habit "${habitName}" successfully added!`);
 
 			habitName = '';
@@ -104,7 +106,7 @@
 					<div
 						class="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent dark:border-gray-200"
 					></div>
-					Menambahkan...
+					Adding...
 				</div>
 			{:else}
 				<div class="flex items-center justify-center gap-2">
