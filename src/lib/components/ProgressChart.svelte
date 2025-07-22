@@ -125,8 +125,8 @@
 
 			labels.push(
 				viewMode === 'weekly'
-					? date.toLocaleDateString('id-ID', { weekday: 'short' })
-					: date.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' })
+					? date.toLocaleDateString('en-US', { weekday: 'short' })
+					: date.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })
 			);
 
 			const total = $habits.filter((h: Habit) => new Date(h.createdAt) <= date).length;
