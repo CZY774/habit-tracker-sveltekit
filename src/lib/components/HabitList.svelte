@@ -119,11 +119,11 @@
 		<div class="mb-4 flex items-center justify-between">
 			<h2 class="flex items-center gap-2 text-xl font-bold text-gray-800 dark:text-gray-200">
 				<Calendar class="text-blue-500 dark:text-blue-400" size={24} />
-				Kebiasaan Hari Ini
+				Today's Habits
 			</h2>
 			<div class="flex items-center gap-2">
 				<label for="date-picker" class="hidden text-sm text-gray-600 sm:block dark:text-gray-300">
-					Pilih Tanggal:
+					Pick Date:
 				</label>
 				<input
 					id="date-picker"
@@ -242,9 +242,9 @@
 		>
 			<div class="text-center">
 				<div class="mb-2 text-3xl font-bold">{completionPercentage}%</div>
-				<div class="mb-1 text-blue-100 dark:text-blue-200">Progress Hari Ini</div>
+				<div class="mb-1 text-blue-100 dark:text-blue-200">Today's Progress</div>
 				<div class="text-sm text-blue-200 dark:text-blue-300">
-					{todayCompletions} dari {totalHabits} kebiasaan selesai
+					{todayCompletions} of {totalHabits} habits completed
 				</div>
 			</div>
 

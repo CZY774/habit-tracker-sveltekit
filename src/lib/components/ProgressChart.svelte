@@ -200,7 +200,7 @@
     <div class="flex items-center justify-between mb-6">
         <h2 class="text-xl font-bold text-gray-800 flex items-center gap-2 dark:text-gray-200">
             <BarChart3 class="text-purple-500 dark:text-purple-400" size={24} />
-            Progress & Statistik
+            Progress & Statistics
         </h2>
         
         <!-- View Mode Toggle -->
@@ -209,13 +209,13 @@
                 class="px-3 py-1 rounded text-sm font-medium transition-all duration-200 {viewMode === 'weekly' ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400' : 'text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200'}"
                 on:click={() => { viewMode = 'weekly'; updateChart(); }}
             >
-                7 Hari
+                7 Days
             </button>
             <button
                 class="px-3 py-1 rounded text-sm font-medium transition-all duration-200 {viewMode === 'monthly' ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400' : 'text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200'}"
                 on:click={() => { viewMode = 'monthly'; updateChart(); }}
             >
-                30 Hari
+                30 Days
             </button>
         </div>
     </div>
@@ -223,8 +223,8 @@
     {#if $habits.length === 0}
         <div class="text-center py-12">
             <div class="text-6xl mb-4">📊</div>
-            <h3 class="text-lg font-semibold text-gray-700 mb-2 dark:text-gray-200">Belum Ada Data</h3>
-            <p class="text-gray-500 dark:text-gray-400">Tambahkan kebiasaan dan mulai tracking untuk melihat progress!</p>
+            <h3 class="text-lg font-semibold text-gray-700 mb-2 dark:text-gray-200">No Data Available</h3>
+            <p class="text-gray-500 dark:text-gray-400">Add habits and start tracking to see progress!</p>
         </div>
     {:else}
         <!-- Stats Cards -->
@@ -232,9 +232,9 @@
             <div class="bg-gradient-to-r from-green-400 to-green-600 rounded-lg p-4 text-white dark:from-green-500 dark:to-green-700">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-green-100 text-sm dark:text-green-200">Minggu Ini</p>
+                        <p class="text-green-100 text-sm dark:text-green-200">This Week</p>
                         <p class="text-2xl font-bold">{weeklyStats.weeklyRate}%</p>
-                        <p class="text-green-100 text-xs dark:text-green-200">{weeklyStats.completed}/{weeklyStats.total} selesai</p>
+                        <p class="text-green-100 text-xs dark:text-green-200">{weeklyStats.completed}/{weeklyStats.total} completed</p>
                     </div>
                     <TrendingUp size={32} class="text-green-200 dark:text-green-300" />
                 </div>
@@ -243,9 +243,9 @@
             <div class="bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg p-4 text-white dark:from-blue-500 dark:to-blue-700">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-blue-100 text-sm dark:text-blue-200">Total Kebiasaan</p>
+                        <p class="text-blue-100 text-sm dark:text-blue-200">Total Habits</p>
                         <p class="text-2xl font-bold">{$habits.length}</p>
-                        <p class="text-blue-100 text-xs dark:text-blue-200">habits aktif</p>
+                        <p class="text-blue-100 text-xs dark:text-blue-200">active habits</p>
                     </div>
                     <Calendar size={32} class="text-blue-200 dark:text-blue-300" />
                 </div>
@@ -256,7 +256,7 @@
                     <div>
                         <p class="text-orange-100 text-sm dark:text-orange-200">Best Streak</p>
                         <p class="text-2xl font-bold">{bestStreak}</p>
-                        <p class="text-orange-100 text-xs dark:text-orange-200">hari berturut-turut</p>
+                        <p class="text-orange-100 text-xs dark:text-orange-200">days in a row</p>
                     </div>
                     <div class="text-orange-200 text-2xl dark:text-orange-300">🔥</div>
                 </div>
@@ -266,7 +266,7 @@
         <!-- Chart -->
         <div class="bg-gray-50 rounded-lg p-4 dark:bg-gray-700">
             <h3 class="text-lg font-semibold text-gray-700 mb-4 dark:text-gray-200">
-                Completion Rate - {viewMode === 'weekly' ? '7 Hari Terakhir' : '30 Hari Terakhir'}
+                Completion Rate - {viewMode === 'weekly' ? 'Last 7 Days' : 'Last 30 Days'}
             </h3>
             <div style="position: relative; height: 300px;">
                 <canvas bind:this={chartCanvas}></canvas>
@@ -275,7 +275,7 @@
 
         <!-- Habit Breakdown -->
         <div class="mt-6">
-            <h3 class="text-lg font-semibold text-gray-700 mb-4 dark:text-gray-200">Breakdown per Kebiasaan</h3>
+            <h3 class="text-lg font-semibold text-gray-700 mb-4 dark:text-gray-200">Habit Breakdown</h3>
             <div class="space-y-3">
                 {#each $habits as habit}
                     {@const completions = Object.keys(habit.completions).length}
@@ -294,7 +294,7 @@
                         </div>
                         <div class="ml-4 text-right">
                             <p class="text-lg font-bold text-gray-800 dark:text-gray-200">{rate}%</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">{completions}/{daysSince} hari</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">{completions}/{daysSince} days</p>
                         </div>
                     </div>
                 {/each}

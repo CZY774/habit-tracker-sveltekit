@@ -7,12 +7,12 @@
 	let isAdding: boolean = false;
 
 	const categories: { value: string; label: string; color: string }[] = [
-		{ value: 'health', label: '🏃 Kesehatan', color: 'bg-green-500' },
-		{ value: 'learning', label: '📚 Belajar', color: 'bg-blue-500' },
-		{ value: 'work', label: '💼 Kerja', color: 'bg-purple-500' },
-		{ value: 'hobby', label: '🎨 Hobi', color: 'bg-orange-500' },
-		{ value: 'social', label: '👥 Sosial', color: 'bg-pink-500' },
-		{ value: 'general', label: '⭐ Umum', color: 'bg-gray-500' }
+		{ value: 'health', label: '🏃 Health', color: 'bg-green-500' },
+		{ value: 'learning', label: '📚 Learning', color: 'bg-blue-500' },
+		{ value: 'work', label: '💼 Work', color: 'bg-purple-500' },
+		{ value: 'hobby', label: '🎨 Hobby', color: 'bg-orange-500' },
+		{ value: 'social', label: '👥 Social', color: 'bg-pink-500' },
+		{ value: 'general', label: '⭐ General', color: 'bg-gray-500' }
 	];
 
 	async function handleSubmit() {
@@ -22,7 +22,7 @@
 
 		setTimeout(() => {
 			habits.addHabit(habitName, category);
-			addNotification(`🎉 Habit "${habitName}" berhasil ditambahkan!`);
+			addNotification(`🎉 Habit "${habitName}" successfully added!`);
 
 			habitName = '';
 			category = 'health';
@@ -40,7 +40,7 @@
 <div class="mb-6 rounded-xl bg-white p-6 shadow-lg dark:bg-gray-800 dark:text-gray-200">
 	<h2 class="mb-4 flex items-center gap-2 text-xl font-bold text-gray-800 dark:text-gray-200">
 		<Plus class="text-blue-500 dark:text-blue-400" size={24} />
-		Tambah Kebiasaan Baru
+		Add New Habit
 	</h2>
 
 	<form on:submit|preventDefault={handleSubmit} class="space-y-4">
@@ -50,14 +50,13 @@
 				for="habit-name"
 				class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
 			>
-				Nama Kebiasaan
 			</label>
 			<input
 				id="habit-name"
 				type="text"
 				bind:value={habitName}
 				on:keydown={handleKeydown}
-				placeholder="Contoh: Olahraga 30 menit"
+				placeholder="e.g. Exercise for 30 minutes"
 				class="w-full rounded-lg border border-gray-300 px-4 py-3 transition-all duration-200 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:focus:border-transparent dark:focus:ring-blue-400"
 				disabled={isAdding}
 			/>
@@ -66,7 +65,7 @@
 		<!-- Pilih Kategori -->
 		<div>
 			<label for="category" class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-				Kategori
+				Category
 			</label>
 			<div class="grid grid-cols-2 gap-2 md:grid-cols-3">
 				{#each categories as cat}
@@ -108,7 +107,7 @@
 			{:else}
 				<div class="flex items-center justify-center gap-2">
 					<Plus size={20} />
-					Tambah Kebiasaan
+					Add Habit
 				</div>
 			{/if}
 		</button>

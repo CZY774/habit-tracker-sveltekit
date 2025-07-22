@@ -28,8 +28,8 @@
 		const isToday = dateStr === today.toISOString().split('T')[0];
 		const isYesterday = dateStr === yesterday.toISOString().split('T')[0];
 
-		if (isToday) return 'Hari Ini';
-		if (isYesterday) return 'Kemarin';
+		if (isToday) return 'Today';
+		if (isYesterday) return 'Yesterday';
 
 		return date.toLocaleDateString('id-ID', {
 			weekday: 'long',
@@ -78,14 +78,14 @@
             <!-- Tab Navigation -->
             <div class="flex space-x-1 mt-4 bg-gray-100 rounded-xl p-1 dark:bg-gray-700">
                 <button
-                    class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {activeTab === 'habits' ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800' : 'text-gray-600 hover:text-gray-800 dark:text-gray-300'}"
+                    class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {activeTab === 'habits' ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400' : 'text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200'}"
                     on:click={() => activeTab = 'habits'}
                 >
                     <Target size={16} />
-                    Kebiasaan
+                    Habits
                 </button>
                 <button
-                    class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {activeTab === 'progress' ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800' : 'text-gray-600 hover:text-gray-800 dark:text-gray-300'}"
+                    class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 {activeTab === 'progress' ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400' : 'text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200'}"
                     on:click={() => activeTab = 'progress'}
                 >
                     <Sparkles size={16} />
