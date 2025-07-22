@@ -1,21 +1,36 @@
+
 # Habit Tracker
 
-### A beautiful and modern habit tracking web app built with SvelteKit, TypeScript, and Tailwind CSS. Track your daily habits, visualize your progress, and build a better lifestyle—one day at a time.
+### Track, visualize, and improve your daily habits with a sleek, accessible, and responsive web app built using SvelteKit, TypeScript, and Tailwind CSS.
+
+
 
 ## Features
 
 - Add, edit, and delete daily habits
 - Mark habits as completed for each day
-- View your progress with a visual chart
-- Responsive, mobile-friendly design
-- Light and dark mode support
+- Visual progress chart
+- Responsive, mobile-first design
+- Light and dark mode
 - Local storage for persistent data
 - Modern UI with Tailwind CSS
 - Social links in the footer
+- **Accessibility:**
+  - Keyboard navigation for all interactive elements
+  - ARIA labels for tabs and navigation
+  - High-contrast color modes
+  
+## Screenshots
+
+<p align="center">
+  <img src="./static/habit-tab.png" alt="Habit Tracker Habit's Tab" width="400"/>
+  <img src="./static/habit-progress.png" alt="Habit Tracker Progress Tab" width="400"/>
+</p>
+
 
 ## Tech Stack
 
-- [SvelteKit](https://svelte.dev/)
+- [SvelteKit](https://kit.svelte.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Lucide Icons](https://lucide.dev/icons/)
